@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCompare.XmlParser", "XmlParser\PriceCompare.XmlParser.csproj", "{DB06F0C6-6458-4775-B1C2-2F1152A09C82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCompare.App", "PriceCompareApp\PriceCompare.App.csproj", "{7BDC9C0E-0B9B-4C9C-94B9-3598E774FCFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCompare.Logic", "PriceCompareLogic\PriceCompare.Logic.csproj", "{67B9080F-17D4-4546-8D10-BDDC506DE7B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCompare.DAL", "PriceCompare.DAL\PriceCompare.DAL.csproj", "{E6AF1C0A-68C7-40F9-9773-30F3CAE6FF0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCompare.Model", "PriceCompare.Model\PriceCompare.Model.csproj", "{60C5D17A-796A-4E7E-B39B-ED54DE7D60B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCompare.ImportData", "PriceCompare.ImportData\PriceCompare.ImportData.csproj", "{7A234A50-216E-47CA-9B5E-1EB38D62B456}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB06F0C6-6458-4775-B1C2-2F1152A09C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB06F0C6-6458-4775-B1C2-2F1152A09C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB06F0C6-6458-4775-B1C2-2F1152A09C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB06F0C6-6458-4775-B1C2-2F1152A09C82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BDC9C0E-0B9B-4C9C-94B9-3598E774FCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BDC9C0E-0B9B-4C9C-94B9-3598E774FCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BDC9C0E-0B9B-4C9C-94B9-3598E774FCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BDC9C0E-0B9B-4C9C-94B9-3598E774FCFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B9080F-17D4-4546-8D10-BDDC506DE7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B9080F-17D4-4546-8D10-BDDC506DE7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B9080F-17D4-4546-8D10-BDDC506DE7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B9080F-17D4-4546-8D10-BDDC506DE7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6AF1C0A-68C7-40F9-9773-30F3CAE6FF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6AF1C0A-68C7-40F9-9773-30F3CAE6FF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6AF1C0A-68C7-40F9-9773-30F3CAE6FF0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6AF1C0A-68C7-40F9-9773-30F3CAE6FF0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C5D17A-796A-4E7E-B39B-ED54DE7D60B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C5D17A-796A-4E7E-B39B-ED54DE7D60B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C5D17A-796A-4E7E-B39B-ED54DE7D60B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C5D17A-796A-4E7E-B39B-ED54DE7D60B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A234A50-216E-47CA-9B5E-1EB38D62B456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A234A50-216E-47CA-9B5E-1EB38D62B456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A234A50-216E-47CA-9B5E-1EB38D62B456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A234A50-216E-47CA-9B5E-1EB38D62B456}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
