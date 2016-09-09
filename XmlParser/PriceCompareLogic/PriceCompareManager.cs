@@ -50,5 +50,33 @@ namespace PriceCompare.Logic
                 await managerRep.AddItemToCartAsync(itemCode,User.CartId);
             }
         }
+
+        public async Task<IEnumerable<ItemCart>> GetCartItemsAsync()
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var cartRep = new CartRepository(context);
+                return await cartRep.GetCartItemsAsync(User.CartId);
+            }
+        }
+
+        public async Task UpdateItemInCartAsync(long itemCode,int itemCount)
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var cartRep=new CartRepository(context);
+                await cartRep.UpdateItemCountAsync(itemCode,itemCount);
+            }
+        }
+
+        public async Task RemoveItemFromCartAsync(long itemCode)
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var cartRep=new CartRepository(context);
+                await cartRep.RemoveItemFromCartAsync(itemCode);
+            }
+            
+        }
     }
 }

@@ -4,12 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
 using System.Web;
 
 namespace PriceCompare.Model
 {
     public class Item
     {
+        public Item()
+        {
+            CartsItem=new HashSet<ItemCart>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long ItemCode { get; set; }
@@ -19,6 +24,6 @@ namespace PriceCompare.Model
         public string ManufactureName { get; set; }
 
         public virtual ICollection<Price> Prices { get; set; }
-        public virtual ICollection<ItemInCart> ItemInCarts { get; set; }
+        public virtual ICollection<ItemCart> CartsItem { get; set; }
     }
 }

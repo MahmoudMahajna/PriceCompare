@@ -16,6 +16,6 @@ namespace PriceCompare.DAL.Data
         public DbSet<Chain> Chains { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<ItemInCart> ItemsCarts { get; set; }
+        public DbSet<ItemCart> ItemsCarts { get; set; }
     }
 }

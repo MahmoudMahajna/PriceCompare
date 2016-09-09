@@ -6,9 +6,14 @@ namespace PriceCompare.Model
 {
     public class Cart
     {
+        public Cart()
+        {
+            ItemsInCart=new HashSet<ItemCart>();
+        }
+
         [Key]
         public int CartId { get; set; }
        
-        public virtual ICollection<ItemInCart> ItemsInCart { get; set; }
+        public virtual ICollection<ItemCart> ItemsInCart { get; set; }
     }
 }

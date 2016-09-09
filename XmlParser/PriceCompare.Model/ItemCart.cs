@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PriceCompare.Model
 {
-    public class ItemInCart
+    public class ItemCart
     {
         [Key]
         [Column(Order = 1)]
@@ -12,6 +12,8 @@ namespace PriceCompare.Model
         [Column(Order = 2)]
         public int CartId { get; set; }
 
+        public string  ItemName { get; set; }
+        public int Count { get; set; }
         public Item Item { get; set; }
         public Cart Cart { get; set; }
     }

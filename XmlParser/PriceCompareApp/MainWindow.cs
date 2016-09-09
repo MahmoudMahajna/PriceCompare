@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PriceCompare.DAL.Data;
 using PriceCompare.Logic;
 using PriceCompare.Model;
+using PriceCompare.XmlParser;
+using PriceCompareApp;
 using Item = PriceCompare.Model.Item;
 
 namespace PriceCompare.App
@@ -25,16 +29,24 @@ namespace PriceCompare.App
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            if (txtSearch.Text.Length == 0)
+            try
             {
-                return;
+                if (txtSearch.Text.Length == 0)
+                {
+                    return;
+                }
+                var items = await _priceCompareManager.GetItemsByNameAsync(txtSearch.Text);
+                var itemsForShow = new List<ItemForShow>();
+                BeginInvoke((Action) (() => itemsPanel.Controls.Clear()));
+                await Task.Run(() => items?.AsParallel().ForAll(item =>
+                {
+                    itemsForShow.Add(new ItemForShow(item.ItemCode, item.ItemName, AddItemToCart));
+                })).ContinueWith(x => BeginInvoke((Action)(() => itemsPanel.Controls.AddRange(itemsForShow.ToArray()))));
             }
-            var items = await _priceCompareManager.GetItemsByNameAsync(txtSearch.Text);
-            var itemsForShow = new List<ItemForShow>();
-            await Task.Run(() => items?.AsParallel().ForAll(item =>
+            catch (Exception exception)
             {
-                itemsForShow.Add(new ItemForShow(item.ItemCode, item.ItemName, AddItemToCart));
-            })).ContinueWith((x) => Invoke((Action)(() => itemsPanel.Controls.AddRange(itemsForShow.ToArray()))));
+                MessageBox.Show(exception.ToString());
+            }
 
         }
 
@@ -69,7 +81,7 @@ namespace PriceCompare.App
         private async Task AddItemsToPanelAsync(IEnumerable<Item> items) =>
             await Task.Run(() =>
             {
-                Invoke((Action)(() => items?.ToList().ForEach(item =>
+                BeginInvoke((Action)(() => items?.ToList().ForEach(item =>
                 {
                     var itemForShow = new ItemForShow(item.ItemCode, item.ItemName, AddItemToCart);
                     itemsPanel.Controls.Add(itemForShow);
@@ -100,6 +112,11 @@ namespace PriceCompare.App
         private void txtSearchItem_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGoToCart_Click(object sender, EventArgs e)
+        {
+            new CartContent(_priceCompareManager).ShowDialog();
         }
     }
 }

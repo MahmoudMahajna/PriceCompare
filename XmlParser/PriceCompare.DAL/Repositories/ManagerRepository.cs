@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,9 @@ namespace PriceCompare.DAL.Repositories
 
         public async Task AddItemToCartAsync(long itemCode,int cartId)
         {
-            _context.ItemsCarts.Add(new ItemInCart() { CartId = cartId, ItemCode = itemCode});
+            var itemRep = new ItemRepository(_context);
+            var item=await itemRep.GetItemByCodeAsync(itemCode);
+            _context.ItemsCarts.AddOrUpdate(new ItemCart { CartId = cartId, ItemCode = itemCode,Count = 0,ItemName =item.ItemName });
             await _context.SaveChangesAsync();
         }
     }

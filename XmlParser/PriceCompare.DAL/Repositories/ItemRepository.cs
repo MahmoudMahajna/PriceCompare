@@ -18,12 +18,12 @@ namespace PriceCompare.DAL.Repositories
             _context = context;
         }
 
-        public async Task<Item> GetItemByCode(long code)
+        public async Task<Item> GetItemByCodeAsync(long code)
         {
            return await _context.Items.FindAsync(code);
         }
 
-        public async Task<IEnumerable<Item>> GetAllItems()
+        public async Task<IEnumerable<Item>> GetAllItemsAsync()
         {
             return await _context.Items.ToListAsync();
         }

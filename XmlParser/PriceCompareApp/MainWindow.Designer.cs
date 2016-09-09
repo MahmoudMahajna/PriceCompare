@@ -39,11 +39,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchItem = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnGoToCart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // itemsPanel
             // 
             this.itemsPanel.AutoScroll = true;
+            this.itemsPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.itemsPanel.Location = new System.Drawing.Point(96, 119);
             this.itemsPanel.Name = "itemsPanel";
             this.itemsPanel.Size = new System.Drawing.Size(561, 269);
@@ -141,11 +143,22 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Type to search";
             // 
+            // btnGoToCart
+            // 
+            this.btnGoToCart.Location = new System.Drawing.Point(510, 406);
+            this.btnGoToCart.Name = "btnGoToCart";
+            this.btnGoToCart.Size = new System.Drawing.Size(147, 36);
+            this.btnGoToCart.TabIndex = 12;
+            this.btnGoToCart.Text = "Go to cart";
+            this.btnGoToCart.UseVisualStyleBackColor = true;
+            this.btnGoToCart.Click += new System.EventHandler(this.btnGoToCart_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 454);
+            this.Controls.Add(this.btnGoToCart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearchItem);
             this.Controls.Add(this.label1);
@@ -178,6 +191,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchItem;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnGoToCart;
     }
 }
 
