@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PriceCompare.App
+namespace PriceCompareApp
 {
     public partial class ItemForShow : UserControl
     {

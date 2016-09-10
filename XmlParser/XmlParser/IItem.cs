@@ -1,6 +1,6 @@
 
 
-namespace PriceCompare.XmlParser
+namespace XmlParser
 {
     public interface IItem
     {

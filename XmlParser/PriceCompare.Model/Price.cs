@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class Price:IPrice
+    public class Price:IPrice,IComparable<Price>
     {
         [Key]
         [Column(Order = 1)]
@@ -22,6 +23,13 @@ namespace PriceCompare.Model
 
         public virtual Item Item { get; set; }
         public virtual Store Store { get; set; }
+
+
+        public int CompareTo(Price other)
+        {
+            var value = other.ItemPrice - ItemPrice;
+            return value < 0 ? 1 : value > 0 ? -1 : 0;
+        }
 
         public override string ToString()
         {

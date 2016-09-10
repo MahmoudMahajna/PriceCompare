@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using PriceCompare.Logic;
+using PriceCompareLogic;
 
-namespace PriceCompare.App
+namespace PriceCompareApp
 {
     public partial class CartContent : Form
     {

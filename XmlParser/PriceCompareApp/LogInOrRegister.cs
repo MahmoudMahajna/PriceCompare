@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using PriceCompare.DAL.Data;
 using PriceCompare.DAL.Repositories;
 
-namespace PriceCompare.App
+namespace PriceCompareApp
 {
     public partial class LogInOrRegister : Form
     {

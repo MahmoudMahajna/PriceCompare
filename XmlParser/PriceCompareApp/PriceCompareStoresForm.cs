@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using PriceCompare.Logic;
 using PriceCompare.Model;
+using PriceCompareLogic;
 
-namespace PriceCompare.App
+namespace PriceCompareApp
 {
     public partial class PriceCompareStoresForm : Form
     {
+        private const int MinMaxItemsInStoreNumber = 3;
         private readonly PriceCompareManager _priceCompareManager;
         private readonly IEnumerable<ItemCart> _items;
         public PriceCompareStoresForm(PriceCompareManager priceCompareManager, IEnumerable<ItemCart> items)
@@ -26,7 +28,7 @@ namespace PriceCompare.App
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -51,7 +53,7 @@ namespace PriceCompare.App
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -79,26 +81,26 @@ namespace PriceCompare.App
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
-        private void DealWithMissingItems(IEnumerable<Tuple<ItemCart, Price>> itemPriceTuplesList, int storeId,int cbNum)
+        private void DealWithMissingItems(IEnumerable<Tuple<ItemCart, Price>> itemPriceTuplesList, long chainId, int storeId, int cbNum)
         {
 
             var itemsNotFound = _priceCompareManager.GetNotFoundItemsInStore(itemPriceTuplesList);
-            var itemsNotFoundList = itemsNotFound==null?null: itemsNotFound as IList<ItemCart> ?? itemsNotFound.ToList();
-            if (!itemsNotFoundList?.Any()==true) return;
+            var itemsNotFoundList = itemsNotFound == null ? null : itemsNotFound as IList<ItemCart> ?? itemsNotFound.ToList();
+            if (!itemsNotFoundList?.Any() == true) return;
             if (itemsNotFound == null)
             {
                 if (cbNum == 1)
                 {
-                    new AddMissingItemsForm(storeId, _priceCompareManager, _items,
+                    new AddMissingItemsForm(chainId, storeId, _priceCompareManager,
                     _items, itemsToComparePanel1).ShowDialog();
                 }
                 if (cbNum == 2)
                 {
-                    new AddMissingItemsForm(storeId, _priceCompareManager, _items,
+                    new AddMissingItemsForm(chainId, storeId, _priceCompareManager,
                     _items, itemsToComparePanel2).ShowDialog();
                 }
             }
@@ -106,45 +108,74 @@ namespace PriceCompare.App
             {
                 if (cbNum == 1)
                 {
-                    new AddMissingItemsForm(storeId, _priceCompareManager, _items,
+                    new AddMissingItemsForm(chainId, storeId, _priceCompareManager,
                         itemsNotFoundList, itemsToComparePanel1).ShowDialog();
                 }
                 if (cbNum == 2)
                 {
-                    new AddMissingItemsForm(storeId, _priceCompareManager, _items,
+                    new AddMissingItemsForm(chainId, storeId, _priceCompareManager,
                         itemsNotFoundList, itemsToComparePanel2).ShowDialog();
                 }
             }
-            
+
         }
         private async void cbStores1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var storeId = ((Store)((ComboBox)sender).SelectedItem).StoreId;
-                var itemPriceTuples = await _priceCompareManager.GetItemsInCartPricesByStoreAsync(storeId, _items);
+                itemsToComparePanel1.Controls.Clear();
+                var store = ((Store)((ComboBox)sender).SelectedItem);
+                var itemPriceTuples = await _priceCompareManager.GetItemsInCartPricesByStoreAsync(long.Parse(store.ChainId), store.StoreId, _items);
                 var itemPriceTuplesList = itemPriceTuples == null ? null : itemPriceTuples as IList<Tuple<ItemCart, Price>> ?? itemPriceTuples.ToList();
                 FillItemsToItemsToComparePanel(itemPriceTuplesList, 1);
-                DealWithMissingItems(itemPriceTuplesList, storeId, 1);
+                DealWithMissingItems(itemPriceTuplesList, long.Parse(store.ChainId), store.StoreId, 1);
+                cbMinItems1.Items.Clear();
+                cbMaxItems1.Items.Clear();
+                await GetAndAddMinMaxPricesInStore(store, 1);
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
+
+        private async Task GetAndAddMinMaxPricesInStore(Store store, int num)
+        {
+            var res = await _priceCompareManager.GetItemsPricesInStoreSortedAscAsync(store.StoreId, long.Parse(store.ChainId));
+            var resArray = res as Price[] ?? res.ToArray();
+            if (res == null || !resArray.Any()) return;
+            var prices = resArray.ToArray();
+            var revPrices = prices.Reverse().ToArray();
+            for (var i = 0; i < MinMaxItemsInStoreNumber; i++)
+            {
+                if (num == 1)
+                {
+                    cbMinItems1.Items.Add(prices.ToArray()[i]);
+                    cbMaxItems1.Items.Add(revPrices[i]);
+                }
+                if (num != 2) continue;
+                cbMinItems2.Items.Add(prices.ToArray()[i]);
+                cbMaxItems2.Items.Add(revPrices[i]);
+            }
+        }
+
         private async void cbStores2_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var storeId = ((Store)((ComboBox)sender).SelectedItem).StoreId;
-                var itemPriceTuples = await _priceCompareManager.GetItemsInCartPricesByStoreAsync(storeId, _items);
-                var itemPriceTuplesList = itemPriceTuples==null? null: itemPriceTuples as IList<Tuple<ItemCart,Price>> ?? itemPriceTuples.ToList();
+                itemsToComparePanel2.Controls.Clear();
+                var store = ((Store)((ComboBox)sender).SelectedItem);
+                var itemPriceTuples = await _priceCompareManager.GetItemsInCartPricesByStoreAsync(long.Parse(store.ChainId), store.StoreId, _items);
+                var itemPriceTuplesList = itemPriceTuples == null ? null : itemPriceTuples as IList<Tuple<ItemCart, Price>> ?? itemPriceTuples.ToList();
                 FillItemsToItemsToComparePanel(itemPriceTuplesList, 2);
-                DealWithMissingItems(itemPriceTuplesList, storeId,2);
+                DealWithMissingItems(itemPriceTuplesList, long.Parse(store.ChainId), store.StoreId, 2);
+                cbMinItems2.Items.Clear();
+                cbMaxItems2.Items.Clear();
+                await GetAndAddMinMaxPricesInStore(store, 2);
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
         private void FillItemsToItemsToComparePanel(IEnumerable<Tuple<ItemCart, Price>> itemPriceTuples, int panelnum)
@@ -152,9 +183,9 @@ namespace PriceCompare.App
             try
             {
                 if (itemPriceTuples == null) return;
-                var itemsContols = itemPriceTuples.Where(itemPriceTuple => !(itemPriceTuple.Item2 == null || itemPriceTuple.Item1==null)).Select(
+                var itemsContols = itemPriceTuples.Where(itemPriceTuple => !(itemPriceTuple.Item2 == null || itemPriceTuple.Item1 == null)).Select(
                     itemPriceTuple =>
-                        new ItemToCompareControl(itemPriceTuple.Item1?.ItemName, itemPriceTuple.Item2.ItemPrice,itemPriceTuple.Item1.Count));
+                        new ItemToCompareControl(itemPriceTuple.Item1?.ItemName, itemPriceTuple.Item2.ItemPrice, itemPriceTuple.Item1.Count));
                 var itemToCompareControls = itemsContols as ItemToCompareControl[] ?? itemsContols.ToArray();
                 if (panelnum == 1)
                 {
@@ -167,7 +198,7 @@ namespace PriceCompare.App
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -187,14 +218,21 @@ namespace PriceCompare.App
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            var priceCountTuples1 = new List<Tuple<float, int>>();
-            var priceCountTuples2 = new List<Tuple<float, int>>();
-            AddTuplesToListFromPanel(priceCountTuples1,itemsToComparePanel1);
-            AddTuplesToListFromPanel(priceCountTuples2, itemsToComparePanel2);
-            float totalPrice1=_priceCompareManager.CalculateTotalPrice(priceCountTuples1);
-           float totalPrice2= _priceCompareManager.CalculateTotalPrice(priceCountTuples2);
-            lblTotalPrice1.Text = $"{totalPrice1}";
-            lblTotalPrice2.Text = $"{totalPrice2}";
+            try
+            {
+                var priceCountTuples1 = new List<Tuple<float, int>>();
+                var priceCountTuples2 = new List<Tuple<float, int>>();
+                AddTuplesToListFromPanel(priceCountTuples1, itemsToComparePanel1);
+                AddTuplesToListFromPanel(priceCountTuples2, itemsToComparePanel2);
+                var totalPrice1 = _priceCompareManager.CalculateTotalPrice(priceCountTuples1);
+                var totalPrice2 = _priceCompareManager.CalculateTotalPrice(priceCountTuples2);
+                lblTotalPrice1.Text = $"{totalPrice1}";
+                lblTotalPrice2.Text = $"{totalPrice2}";
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private static void AddTuplesToListFromPanel(ICollection<Tuple<float, int>> priceCountTuples, FlowLayoutPanel itemsToComparePanel1)
@@ -203,6 +241,39 @@ namespace PriceCompare.App
             {
                 priceCountTuples.Add(new Tuple<float, int>(float.Parse(((ItemToCompareControl)control).lblItemPrice.Text), (int)((ItemToCompareControl)control).nmCount.Value));
             }
+        }
+
+        private void cbMinItems1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AddMinMaxItemToShow(cbMinItems1,minPanel1);
+        }
+
+        private void AddMinMaxItemToShow(ComboBox cb,Control panel)
+        {
+            var price = (Price)cb.SelectedItem;
+            BeginInvoke((Action)(() =>
+            {
+                panel.Controls.Clear();
+                panel.Controls.Add(new ItemToCompareControl(price.ItemName, price.ItemPrice, 0)
+                {
+                    nmCount = { Visible = false }
+                });
+            }));
+        }
+
+        private void cbMaxItems1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AddMinMaxItemToShow(cbMaxItems1, maxPanel1);
+        }
+
+        private void cbMinItems2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AddMinMaxItemToShow(cbMinItems2, minPanel2);
+        }
+
+        private void cbMaxItems2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AddMinMaxItemToShow(cbMaxItems2, maxPanel2);
         }
     }
 }

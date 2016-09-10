@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PriceCompare.Model;
 
-namespace PriceCompare.Logic
+namespace PriceCompareLogic
 {
     public interface IPriceCompareManager
     {
@@ -25,12 +25,12 @@ namespace PriceCompare.Logic
 
         IEnumerable<Store> GetStoresByChainId(string chainId);
 
-        Task<IEnumerable<Tuple<ItemCart, Price>>> GetItemsInCartPricesByStoreAsync(int storeId,
+        Task<IEnumerable<Tuple<ItemCart, Price>>> GetItemsInCartPricesByStoreAsync(long chainId,int storeId,
             IEnumerable<ItemCart> items);
 
         IEnumerable<ItemCart> GetNotFoundItemsInStore(IEnumerable<Tuple<ItemCart, Price>> itemPriceTuples);
 
-        Task<IEnumerable<Price>> GetItemsInStoreByStoreWithNameIdAsync(int storeId, string text);
+        Task<IEnumerable<Price>> GetItemsInStoreByStoreWithNameIdAsync(int storeId, string text, long chainId);
 
         Task<Price> GetItemPriceByCodeAsync(long itemCode);
 

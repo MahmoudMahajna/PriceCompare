@@ -1,4 +1,4 @@
-﻿namespace PriceCompare.XmlParser
+﻿namespace XmlParser
 {
     public interface IStore
     {

@@ -1,4 +1,4 @@
-﻿namespace PriceCompare.App
+﻿namespace PriceCompareApp
 {
     partial class PriceCompareStoresForm
     {
@@ -39,6 +39,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCalculate = new System.Windows.Forms.Button();
+            this.cbMinItems1 = new System.Windows.Forms.ComboBox();
+            this.cbMaxItems1 = new System.Windows.Forms.ComboBox();
+            this.minPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.maxPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.minPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.maxPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbMinItems2 = new System.Windows.Forms.ComboBox();
+            this.cbMaxItems2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // itemsToComparePanel1
@@ -146,11 +158,126 @@
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
+            // cbMinItems1
+            // 
+            this.cbMinItems1.FormattingEnabled = true;
+            this.cbMinItems1.Location = new System.Drawing.Point(54, 480);
+            this.cbMinItems1.Name = "cbMinItems1";
+            this.cbMinItems1.Size = new System.Drawing.Size(121, 21);
+            this.cbMinItems1.TabIndex = 11;
+            this.cbMinItems1.SelectedIndexChanged += new System.EventHandler(this.cbMinItems1_SelectedIndexChanged);
+            // 
+            // cbMaxItems1
+            // 
+            this.cbMaxItems1.FormattingEnabled = true;
+            this.cbMaxItems1.Location = new System.Drawing.Point(54, 562);
+            this.cbMaxItems1.Name = "cbMaxItems1";
+            this.cbMaxItems1.Size = new System.Drawing.Size(121, 21);
+            this.cbMaxItems1.TabIndex = 12;
+            this.cbMaxItems1.SelectedIndexChanged += new System.EventHandler(this.cbMaxItems1_SelectedIndexChanged);
+            // 
+            // minPanel1
+            // 
+            this.minPanel1.Location = new System.Drawing.Point(54, 507);
+            this.minPanel1.Name = "minPanel1";
+            this.minPanel1.Size = new System.Drawing.Size(334, 49);
+            this.minPanel1.TabIndex = 13;
+            // 
+            // maxPanel1
+            // 
+            this.maxPanel1.Location = new System.Drawing.Point(54, 589);
+            this.maxPanel1.Name = "maxPanel1";
+            this.maxPanel1.Size = new System.Drawing.Size(334, 49);
+            this.maxPanel1.TabIndex = 14;
+            // 
+            // minPanel2
+            // 
+            this.minPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.minPanel2.Location = new System.Drawing.Point(405, 507);
+            this.minPanel2.Name = "minPanel2";
+            this.minPanel2.Size = new System.Drawing.Size(334, 49);
+            this.minPanel2.TabIndex = 18;
+            // 
+            // maxPanel2
+            // 
+            this.maxPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.maxPanel2.Location = new System.Drawing.Point(405, 589);
+            this.maxPanel2.Name = "maxPanel2";
+            this.maxPanel2.Size = new System.Drawing.Size(334, 49);
+            this.maxPanel2.TabIndex = 17;
+            // 
+            // cbMinItems2
+            // 
+            this.cbMinItems2.FormattingEnabled = true;
+            this.cbMinItems2.Location = new System.Drawing.Point(618, 480);
+            this.cbMinItems2.Name = "cbMinItems2";
+            this.cbMinItems2.Size = new System.Drawing.Size(121, 21);
+            this.cbMinItems2.TabIndex = 16;
+            this.cbMinItems2.SelectedIndexChanged += new System.EventHandler(this.cbMinItems2_SelectedIndexChanged);
+            // 
+            // cbMaxItems2
+            // 
+            this.cbMaxItems2.FormattingEnabled = true;
+            this.cbMaxItems2.Location = new System.Drawing.Point(618, 562);
+            this.cbMaxItems2.Name = "cbMaxItems2";
+            this.cbMaxItems2.Size = new System.Drawing.Size(121, 21);
+            this.cbMaxItems2.TabIndex = 15;
+            this.cbMaxItems2.SelectedIndexChanged += new System.EventHandler(this.cbMaxItems2_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(181, 480);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Min 3 Items price";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(525, 483);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Min 3 Items price";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(181, 565);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Max 3 Items price";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(522, 565);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Max 3 Items price";
+            // 
             // PriceCompareStoresForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 495);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(799, 671);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.minPanel2);
+            this.Controls.Add(this.maxPanel2);
+            this.Controls.Add(this.maxPanel1);
+            this.Controls.Add(this.cbMinItems2);
+            this.Controls.Add(this.minPanel1);
+            this.Controls.Add(this.cbMaxItems2);
+            this.Controls.Add(this.cbMaxItems1);
+            this.Controls.Add(this.cbMinItems1);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -183,5 +310,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.ComboBox cbMinItems1;
+        private System.Windows.Forms.ComboBox cbMaxItems1;
+        private System.Windows.Forms.FlowLayoutPanel minPanel1;
+        private System.Windows.Forms.FlowLayoutPanel maxPanel1;
+        private System.Windows.Forms.FlowLayoutPanel minPanel2;
+        private System.Windows.Forms.FlowLayoutPanel maxPanel2;
+        private System.Windows.Forms.ComboBox cbMinItems2;
+        private System.Windows.Forms.ComboBox cbMaxItems2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

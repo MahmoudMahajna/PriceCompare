@@ -1,4 +1,4 @@
-﻿namespace PriceCompare.App
+﻿namespace PriceCompareApp
 {
     partial class ItemToShowInCart
     {
@@ -65,6 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lblItemName);

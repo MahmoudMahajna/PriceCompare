@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 
-namespace PriceCompare.XmlParser
+namespace XmlParser
 {
     public interface IFileXmlParser
     {

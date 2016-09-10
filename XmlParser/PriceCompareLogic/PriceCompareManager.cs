@@ -6,7 +6,7 @@ using PriceCompare.DAL.Data;
 using PriceCompare.DAL.Repositories;
 using PriceCompare.Model;
 
-namespace PriceCompare.Logic
+namespace PriceCompareLogic
 {
     public class PriceCompareManager: IPriceCompareManager
     {
@@ -101,12 +101,12 @@ namespace PriceCompare.Logic
             }
         }
 
-        public async Task<IEnumerable<Tuple<ItemCart, Price>>> GetItemsInCartPricesByStoreAsync(int storeId, IEnumerable<ItemCart> items)
+        public async Task<IEnumerable<Tuple<ItemCart, Price>>> GetItemsInCartPricesByStoreAsync(long chainId,int storeId, IEnumerable<ItemCart> items)
         {
             using (var context = new PriceCompareDbContext())
             {
                 var priceRep = new PriceRepository(context);
-                var allPricesInStore = await priceRep.GetPricesByStoreIdAsync(storeId);
+                var allPricesInStore = await priceRep.GetPricesByStoreIdAsync(storeId, chainId);
                 var pricesInStore = allPricesInStore.ToArray();
                 if (pricesInStore.Count() != 0)
                 {
@@ -124,12 +124,12 @@ namespace PriceCompare.Logic
                 .Select(itemPriceTuple => itemPriceTuple.Item1);
         }
 
-        public async Task<IEnumerable<Price>> GetItemsInStoreByStoreWithNameIdAsync(int storeId, string text)
+        public async Task<IEnumerable<Price>> GetItemsInStoreByStoreWithNameIdAsync(int storeId, string text,long chainId)
         {
             using (var context = new PriceCompareDbContext())
             {
                 var priceRep=new PriceRepository(context);
-                return await priceRep.GetItemsInStoreByStoreWithNameIdAsync(storeId, text);
+                return await priceRep.GetItemsInStoreByStoreWithNameIdAsync(storeId, text,chainId);
             }
         }
 
@@ -147,6 +147,15 @@ namespace PriceCompare.Logic
             float totalPrice = 0;
             priceCountTuples.ForEach(priceCount=>totalPrice+=priceCount.Item1*priceCount.Item2);
             return totalPrice;
+        }
+
+        public async Task<IEnumerable<Price>> GetItemsPricesInStoreSortedAscAsync(int storeId, long chainId)
+        {
+            using (var context=new PriceCompareDbContext())
+            {
+                var priceRep=new PriceRepository(context);
+                return await priceRep.GetItemsPricesInStoreSortedAscAsync(storeId, chainId);
+            }
         }
     }
 }

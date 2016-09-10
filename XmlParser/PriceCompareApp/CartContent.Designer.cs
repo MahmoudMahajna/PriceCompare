@@ -1,4 +1,4 @@
-﻿namespace PriceCompare.App
+﻿namespace PriceCompareApp
 {
     partial class CartContent
     {
@@ -55,6 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(792, 446);
             this.Controls.Add(this.btnComparePrices);
             this.Controls.Add(this.CartContentPanel);

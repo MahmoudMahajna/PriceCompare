@@ -6,9 +6,9 @@ using System.Linq;
 using System.Windows.Forms;
 using PriceCompare.DAL.Data;
 using PriceCompare.Model;
-using PriceCompare.XmlParser;
-using Item = PriceCompare.XmlParser.Item;
-using Store = PriceCompare.XmlParser.Store;
+using XmlParser;
+using Item = XmlParser.Item;
+using Store = XmlParser.Store;
 
 namespace PriceCompare.ImportData
 {
@@ -24,7 +24,7 @@ namespace PriceCompare.ImportData
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
             using (var context = new PriceCompareDbContext())
@@ -34,7 +34,8 @@ namespace PriceCompare.ImportData
                     var itemCollection = (TivTamItemCollection)new TivTamPriceXmlParser().Parse(new StreamReader(openFileDialog1.FileName));
                     var items = itemCollection.Items;
                     AddItemsAndPrices(context, itemCollection.StoreId, items);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
+                    MessageBox.Show(@"Done");
                 }
                 catch (Exception exception)
                 {

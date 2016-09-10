@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PriceCompare.DAL.Data;
-using PriceCompare.Logic;
 using PriceCompare.Model;
-using PriceCompare.XmlParser;
-using PriceCompare.App;
+using PriceCompareLogic;
 using Item = PriceCompare.Model.Item;
 
-namespace PriceCompare.App
+namespace PriceCompareApp
 {
     public partial class MainWindow : Form
     {
@@ -41,7 +37,7 @@ namespace PriceCompare.App
                 await Task.Run(() => items?.AsParallel().ForAll(item =>
                 {
                     itemsForShow.Add(new ItemForShow(item.ItemCode, item.ItemName, AddItemToCart));
-                })).ContinueWith(x => BeginInvoke((Action)(() => itemsPanel.Controls.AddRange(itemsForShow.ToArray()))));
+                })).ContinueWith(x => BeginInvoke((Action)(() => itemsPanel.Controls.AddRange(itemsForShow.ToArray<Control>()))));
             }
             catch (Exception exception)
             {
@@ -93,10 +89,9 @@ namespace PriceCompare.App
             try
             {
                 long itemCode;
-                if (long.TryParse(((ItemForShow)((Control)sender).Parent).lblCode.Text, out itemCode))
-                {
-                    await _priceCompareManager.AddItemToCartAsync(itemCode);
-                }
+                if (!long.TryParse(((ItemForShow) ((Control) sender).Parent).lblCode.Text, out itemCode)) return;
+                await _priceCompareManager.AddItemToCartAsync(itemCode);
+                MessageBox.Show(@"Added");
             }
             catch (Exception exception)
             {
