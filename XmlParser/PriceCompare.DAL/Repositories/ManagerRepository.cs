@@ -41,7 +41,7 @@ namespace PriceCompare.DAL.Repositories
         {
             var itemRep = new ItemRepository(_context);
             var item=await itemRep.GetItemByCodeAsync(itemCode);
-            _context.ItemsCarts.AddOrUpdate(new ItemCart { CartId = cartId, ItemCode = itemCode,Count = 0,ItemName =item.ItemName });
+            _context.ItemsCarts.AddOrUpdate(new ItemCart { CartId = cartId, ItemCode = itemCode,Count = 1,ItemName =item.ItemName });
             await _context.SaveChangesAsync();
         }
     }

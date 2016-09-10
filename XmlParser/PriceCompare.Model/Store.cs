@@ -17,5 +17,16 @@ namespace PriceCompare.Model
 
         public Chain Chain { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
+
+        public override string ToString()
+        {
+            return StoreName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var store = obj as Store;
+            return StoreId == store?.StoreId;
+        }
     }
 }

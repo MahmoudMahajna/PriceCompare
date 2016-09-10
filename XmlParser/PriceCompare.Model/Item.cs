@@ -25,5 +25,10 @@ namespace PriceCompare.Model
 
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<ItemCart> CartsItem { get; set; }
+
+        public override string ToString()
+        {
+            return ItemName;
+        }
     }
 }

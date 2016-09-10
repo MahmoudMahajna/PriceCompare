@@ -56,11 +56,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMissingItemsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMissingItemsForm.Designer.cs">
+      <DependentUpon>AddMissingItemsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CartContent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CartContent.Designer.cs">
       <DependentUpon>CartContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemToCompareControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemToCompareControl.Designer.cs">
+      <DependentUpon>ItemToCompareControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemToShowInCart.cs">
       <SubType>UserControl</SubType>
@@ -86,10 +98,22 @@
     <Compile Include="ItemForShow.Designer.cs">
       <DependentUpon>ItemForShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="PriceCompareStoresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PriceCompareStoresForm.Designer.cs">
+      <DependentUpon>PriceCompareStoresForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddMissingItemsForm.resx">
+      <DependentUpon>AddMissingItemsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CartContent.resx">
       <DependentUpon>CartContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemToCompareControl.resx">
+      <DependentUpon>ItemToCompareControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ItemToShowInCart.resx">
       <DependentUpon>ItemToShowInCart.cs</DependentUpon>
@@ -102,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ItemForShow.resx">
       <DependentUpon>ItemForShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PriceCompareStoresForm.resx">
+      <DependentUpon>PriceCompareStoresForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

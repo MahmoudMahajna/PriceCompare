@@ -15,11 +15,18 @@ namespace PriceCompare.Model
         [Key]
         [Column(Order = 2)]
         public int StoreId { get; set; }
+
+        public string ItemName { get; set; }
         public float ItemPrice { get; set; }
         public double Quantity { get; set; }
         public double UnitOfMeasurePrice { get; set; }
 
         public virtual Item Item { get; set; }
         public virtual Store Store { get; set; }
+
+        public override string ToString()
+        {
+            return ItemName;
+        }
     }
 }

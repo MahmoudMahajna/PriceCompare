@@ -11,5 +11,10 @@ namespace PriceCompare.Model
         public string ChainName { get; set; }
 
         public virtual ICollection<Store> Stores { get; set; }
+
+        public override string ToString()
+        {
+            return ChainName;
+        }
     }
 }

@@ -39,5 +39,12 @@ namespace PriceCompareApp
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private async void btnComparePrices_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var cartItems = await _priceCompareManager.GetCartItemsAsync();
+            new PriceCompareStoresForm(_priceCompareManager,cartItems).ShowDialog();
+        }
     }
 }

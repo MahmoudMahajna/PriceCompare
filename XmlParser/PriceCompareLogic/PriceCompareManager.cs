@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PriceCompare.DAL.Data;
 using PriceCompare.DAL.Repositories;
@@ -9,7 +10,7 @@ namespace PriceCompare.Logic
 {
     public class PriceCompareManager
     {
-        public User User { get; private set; }
+        public User User { get; }
 
         public PriceCompareManager(User user)
         {
@@ -20,7 +21,7 @@ namespace PriceCompare.Logic
         {
             if (manufactureName == null)
             {
-                throw  new ArgumentNullException(nameof(manufactureName));
+                throw new ArgumentNullException(nameof(manufactureName));
             }
             using (var context = new PriceCompareDbContext())
             {
@@ -37,7 +38,7 @@ namespace PriceCompare.Logic
             }
             using (var context = new PriceCompareDbContext())
             {
-                var managerReop=new ManagerRepository(context);
+                var managerReop = new ManagerRepository(context);
                 return await managerReop.GetItemsByNameAsync(itemName);
             }
         }
@@ -46,8 +47,8 @@ namespace PriceCompare.Logic
         {
             using (var context = new PriceCompareDbContext())
             {
-                var managerRep=new ManagerRepository(context);
-                await managerRep.AddItemToCartAsync(itemCode,User.CartId);
+                var managerRep = new ManagerRepository(context);
+                await managerRep.AddItemToCartAsync(itemCode, User.CartId);
             }
         }
 
@@ -60,12 +61,12 @@ namespace PriceCompare.Logic
             }
         }
 
-        public async Task UpdateItemInCartAsync(long itemCode,int itemCount)
+        public async Task UpdateItemInCartAsync(long itemCode, int itemCount)
         {
             using (var context = new PriceCompareDbContext())
             {
-                var cartRep=new CartRepository(context);
-                await cartRep.UpdateItemCountAsync(itemCode,itemCount);
+                var cartRep = new CartRepository(context);
+                await cartRep.UpdateItemCountAsync(itemCode, itemCount);
             }
         }
 
@@ -73,10 +74,79 @@ namespace PriceCompare.Logic
         {
             using (var context = new PriceCompareDbContext())
             {
-                var cartRep=new CartRepository(context);
+                var cartRep = new CartRepository(context);
                 await cartRep.RemoveItemFromCartAsync(itemCode);
             }
-            
+        }
+
+        public IEnumerable<Chain> GetChains()
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var chainRep = new ChainRepository(context);
+                return chainRep.GetChains();
+            }
+        }
+
+        public IEnumerable<Store> GetStoresByChainId(string chainId)
+        {
+            if (chainId == null)
+            {
+                throw new ArgumentNullException(nameof(chainId));
+            }
+            using (var context = new PriceCompareDbContext())
+            {
+                var chainRep = new ChainRepository(context);
+                return chainRep.GetStoresByChainId(chainId);
+            }
+        }
+
+        public async Task<IEnumerable<Tuple<ItemCart, Price>>> GetItemsInCartPricesByStoreAsync(int storeId, IEnumerable<ItemCart> items)
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var priceRep = new PriceRepository(context);
+                var allPricesInStore = await priceRep.GetPricesByStoreIdAsync(storeId);
+                var pricesInStore = allPricesInStore.ToArray();
+                if (pricesInStore.Count() != 0)
+                {
+                    return await Task.Run(() => items.ToList()
+                                                .Select(item => new Tuple<ItemCart, Price>(item, pricesInStore
+                                                                                            .FirstOrDefault( price => price.ItemCode == item.ItemCode))));
+                }
+                return null;
+            }
+        }
+
+        public IEnumerable<ItemCart> GetNotFoundItemsInStore(IEnumerable<Tuple<ItemCart, Price>> itemPriceTuples)
+        {
+            return itemPriceTuples?.Where(itemPriceTuple => itemPriceTuple.Item2 == null)
+                .Select(itemPriceTuple => itemPriceTuple.Item1);
+        }
+
+        public async Task<IEnumerable<Price>> GetItemsInStoreByStoreWithNameIdAsync(int storeId, string text)
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var priceRep=new PriceRepository(context);
+                return await priceRep.GetItemsInStoreByStoreWithNameIdAsync(storeId, text);
+            }
+        }
+
+        public async Task<Price> GetItemPriceByCodeAsync(long itemCode)
+        {
+            using (var context = new PriceCompareDbContext())
+            {
+                var priceRep=new PriceRepository(context);
+                return await priceRep.GetItemPriceByCodeAsync(itemCode);
+            }
+        }
+
+        public float CalculateTotalPrice(List<Tuple<float, int>> priceCountTuples)
+        {
+            float totalPrice = 0;
+            priceCountTuples.ForEach(priceCount=>totalPrice+=priceCount.Item1*priceCount.Item2);
+            return totalPrice;
         }
     }
 }

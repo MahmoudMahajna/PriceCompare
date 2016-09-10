@@ -16,5 +16,10 @@ namespace PriceCompare.Model
         public int Count { get; set; }
         public Item Item { get; set; }
         public Cart Cart { get; set; }
+
+        public override string ToString()
+        {
+            return ItemName;
+        }
     }
 }

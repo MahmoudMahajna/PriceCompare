@@ -116,6 +116,7 @@ namespace PriceCompare.App
 
         private void btnGoToCart_Click(object sender, EventArgs e)
         {
+            Hide();
             new CartContent(_priceCompareManager).ShowDialog();
         }
     }
