@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using PriceCompare.Logic;
 using PriceCompare.Model;
 
-namespace PriceCompareApp
+namespace PriceCompare.App
 {
     public partial class PriceCompareStoresForm : Form
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,12 @@ namespace PriceCompare.XmlParser
     {
         public override object Parse(StreamReader xmlFile)
         {
-            var serializer = new XmlSerializer(typeof(TivTamItemCollection));
-            var items = (TivTamItemCollection)serializer.Deserialize(xmlFile);
-            items.SetStoreDetailsForItems();
-            return items;
+
+                var serializer = new XmlSerializer(typeof(TivTamItemCollection));
+                var items = (TivTamItemCollection)serializer.Deserialize(xmlFile);
+                items.SetStoreDetailsForItems();
+                return items;
+
         }
     }
 }

@@ -19,7 +19,6 @@ namespace PriceCompare.App
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            Hide();
             var username = txtUsernameLogin.Text;
             var password = txtPasswordLogin.Text;
             if (username.Length == 0 || password.Length == 0)
@@ -45,6 +44,7 @@ namespace PriceCompare.App
                     else
                     {
                         var user = await userRep.GetUser(username);
+                        Hide();
                         new MainWindow(user).ShowDialog();
                     }
                 }

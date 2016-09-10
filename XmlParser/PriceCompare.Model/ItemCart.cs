@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class ItemCart
+    public class ItemCart:IItemCart
     {
         [Key]
         [Column(Order = 1)]

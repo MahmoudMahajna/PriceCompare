@@ -8,7 +8,7 @@ using PriceCompare.Model;
 
 namespace PriceCompare.Logic
 {
-    public class PriceCompareManager
+    public class PriceCompareManager: IPriceCompareManager
     {
         public User User { get; }
 

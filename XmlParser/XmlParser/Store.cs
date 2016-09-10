@@ -30,9 +30,5 @@ namespace PriceCompare.XmlParser
         public string City { get; set; }
         [XmlElement("ZipCode")]
         public string ZipCode { get; set; }
-        [XmlElement("LastUpdateDate")]
-        public string LastUpdateDate { get; set; }
-        [XmlElement("LastUpdateTime")]
-        public string LastUpdateTime { get; set; }
     }
 }

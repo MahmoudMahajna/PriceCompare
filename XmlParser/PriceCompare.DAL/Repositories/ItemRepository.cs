@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using PriceCompare.DAL.Data;
+using PriceCompare.DAL.RepositoriesIntefaces;
 using PriceCompare.Model;
 
 namespace PriceCompare.DAL.Repositories
 {
-    public  class ItemRepository
+    public  class ItemRepository:Repository,IItemRepository
     {
-        private readonly PriceCompareDbContext _context;
-
-       public  ItemRepository(PriceCompareDbContext context)
+       public  ItemRepository(PriceCompareDbContext context):base(context)
         {
-            _context = context;
         }
 
         public async Task<Item> GetItemByCodeAsync(long code)

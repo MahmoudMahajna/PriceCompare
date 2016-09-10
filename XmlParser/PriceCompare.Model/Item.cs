@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using System.Web;
+using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class Item
+    public class Item:IItem
     {
         public Item()
         {
@@ -29,6 +25,11 @@ namespace PriceCompare.Model
         public override string ToString()
         {
             return ItemName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ((Item)obj).ItemCode==ItemCode;
         }
     }
 }

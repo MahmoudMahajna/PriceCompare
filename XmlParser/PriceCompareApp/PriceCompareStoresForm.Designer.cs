@@ -1,4 +1,4 @@
-﻿namespace PriceCompareApp
+﻿namespace PriceCompare.App
 {
     partial class PriceCompareStoresForm
     {
@@ -43,6 +43,7 @@
             // 
             // itemsToComparePanel1
             // 
+            this.itemsToComparePanel1.AutoScroll = true;
             this.itemsToComparePanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.itemsToComparePanel1.Location = new System.Drawing.Point(54, 95);
             this.itemsToComparePanel1.Name = "itemsToComparePanel1";
@@ -51,6 +52,7 @@
             // 
             // itemsToComparePanel2
             // 
+            this.itemsToComparePanel2.AutoScroll = true;
             this.itemsToComparePanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.itemsToComparePanel2.Location = new System.Drawing.Point(405, 95);
             this.itemsToComparePanel2.Name = "itemsToComparePanel2";

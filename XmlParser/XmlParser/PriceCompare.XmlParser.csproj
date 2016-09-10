@@ -40,24 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdditionalRestrictions.cs" />
-    <Compile Include="Club.cs" />
     <Compile Include="FileXmlParser.cs" />
     <Compile Include="IFileXmlParser.cs" />
     <Compile Include="IItem.cs" />
-    <Compile Include="IPromotion.cs" />
     <Compile Include="IStore.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ItemsCollection.cs" />
-    <Compile Include="PriceXmlParser.cs" />
-    <Compile Include="Promotion.cs" />
-    <Compile Include="PromotionItem.cs" />
-    <Compile Include="PromoXmlParser.cs" />
+    <Compile Include="ShofersalItemsCollection.cs" />
+    <Compile Include="ShofersalPriceXmlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="StoresCollection.cs" />
     <Compile Include="StoresXmlParser.cs" />
-    <Compile Include="TivTamItem.cs" />
     <Compile Include="TivTamItemCollection.cs" />
     <Compile Include="TivTamPriceXmlParser.cs" />
   </ItemGroup>

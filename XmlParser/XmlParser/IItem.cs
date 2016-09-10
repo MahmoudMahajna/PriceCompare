@@ -13,16 +13,9 @@ namespace PriceCompare.XmlParser
         int ItemType { get; set; }
         string ItemName { get; set; }
         string ManufacturerName { get; set; }
-        string ManufactureCountry { get; set; }
-        string ManufacturerItemDescription { get; set; }
-        string UnitQty { get; set; }
         double Quantity { get; set; }
         bool IsWeighted { get; set; }
-        string UnitOfMeasure { get; set; }
-        int QtyInPackage { get; set; }
-        double ItemPrice { get; set; }
+        float ItemPrice { get; set; }
         double UnitOfMeasurePrice { get; set; }
-        bool AllowDiscount { get; set; }
-        int ItemStatus { get; set; }
     }
 }

@@ -53,11 +53,18 @@
     <Compile Include="Data\PriceCompareInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoriesIntefaces\ICartRepository.cs" />
+    <Compile Include="RepositoriesIntefaces\IChainRepository.cs" />
+    <Compile Include="RepositoriesIntefaces\IItemRepository.cs" />
+    <Compile Include="RepositoriesIntefaces\IManagerRepository.cs" />
+    <Compile Include="RepositoriesIntefaces\IPriceRepository.cs" />
+    <Compile Include="RepositoriesIntefaces\IUserRepository.cs" />
     <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\ChainRepository.cs" />
     <Compile Include="Repositories\ItemRepository.cs" />
     <Compile Include="Repositories\ManagerRepository.cs" />
     <Compile Include="Repositories\PriceRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup />

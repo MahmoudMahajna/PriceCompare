@@ -1,4 +1,4 @@
-﻿namespace PriceCompareApp
+﻿namespace PriceCompare.App
 {
     partial class ItemToCompareControl
     {

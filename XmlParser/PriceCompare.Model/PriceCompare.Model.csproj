@@ -43,6 +43,13 @@
   <ItemGroup>
     <Compile Include="Cart.cs" />
     <Compile Include="Chain.cs" />
+    <Compile Include="Interfaces\ICart.cs" />
+    <Compile Include="Interfaces\IChain.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IItemCart.cs" />
+    <Compile Include="Interfaces\IPrice.cs" />
+    <Compile Include="Interfaces\IStore.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemCart.cs" />
     <Compile Include="Price.cs" />

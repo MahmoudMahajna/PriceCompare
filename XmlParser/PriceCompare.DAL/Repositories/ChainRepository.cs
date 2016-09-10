@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PriceCompare.DAL.Data;
+using PriceCompare.DAL.RepositoriesIntefaces;
 using PriceCompare.Model;
 
 namespace PriceCompare.DAL.Repositories
 {
-   public class ChainRepository
+   public class ChainRepository:Repository,IChainRepository
     {
-       private readonly PriceCompareDbContext _context;
-
-       public ChainRepository(PriceCompareDbContext context)
+       public ChainRepository(PriceCompareDbContext context):base(context)
        {
-           _context = context;
        }
 
 

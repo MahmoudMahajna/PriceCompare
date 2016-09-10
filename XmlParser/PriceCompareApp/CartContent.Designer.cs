@@ -1,4 +1,4 @@
-﻿namespace PriceCompareApp
+﻿namespace PriceCompare.App
 {
     partial class CartContent
     {
@@ -34,6 +34,7 @@
             // 
             // CartContentPanel
             // 
+            this.CartContentPanel.AutoScroll = true;
             this.CartContentPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.CartContentPanel.Location = new System.Drawing.Point(85, 31);
             this.CartContentPanel.Name = "CartContentPanel";

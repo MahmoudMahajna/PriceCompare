@@ -12,8 +12,8 @@ namespace PriceCompare.XmlParser
    public class TivTamItemCollection
     {
         [XmlArray("Items")]
-        [XmlArrayItem("Item", typeof(TivTamItem))]
-        public TivTamItem[] Items { get; set; }
+        [XmlArrayItem("Item", typeof(Item))]
+        public Item[] Items { get; set; }
         [XmlElement("ChainId")]
         public long ChainId { get; set; }
         [XmlElement("SubChainId")]

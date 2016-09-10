@@ -3,17 +3,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using PriceCompare.DAL.Data;
+using PriceCompare.DAL.RepositoriesIntefaces;
 using PriceCompare.Model;
 
 namespace PriceCompare.DAL.Repositories
 {
-    public class PriceRepository
+    public class PriceRepository:Repository,IPriceRepository
     {
-        private readonly PriceCompareDbContext _context;
-
-        public PriceRepository(PriceCompareDbContext context)
+       public PriceRepository(PriceCompareDbContext context):base(context)
         {
-            _context = context;
         }
 
         public async Task<IEnumerable<Price>> GetPricesByStoreIdAsync(int storeId)

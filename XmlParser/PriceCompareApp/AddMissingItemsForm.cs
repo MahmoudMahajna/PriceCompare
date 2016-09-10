@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using PriceCompare.Logic;
 using PriceCompare.Model;
 
-namespace PriceCompareApp
+namespace PriceCompare.App
 {
     public partial class AddMissingItemsForm : Form
     {
@@ -47,7 +47,11 @@ namespace PriceCompareApp
                 {
                     CreateHandle();
                 }
-                BeginInvoke((Action)(() => lstboxItemsInStore.Items.AddRange(prices.ToArray<object>())));
+                BeginInvoke((Action)(() =>
+                {
+                    lstboxItemsInStore.Items.Clear();
+                    lstboxItemsInStore.Items.AddRange(prices.ToArray<object>());
+                }));
             }
             catch (Exception exception)
             {

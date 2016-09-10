@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using PriceCompare.DAL.Data;
-using PriceCompare.DAL.Repositories;
 using PriceCompare.Logic;
 
-namespace PriceCompareApp
+namespace PriceCompare.App
 {
     public partial class ItemToShowInCart : UserControl
     {

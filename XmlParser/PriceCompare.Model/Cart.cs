@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class Cart
+    public class Cart:ICart
     {
         public Cart()
         {

@@ -149,7 +149,7 @@
             this.btnGoToCart.Name = "btnGoToCart";
             this.btnGoToCart.Size = new System.Drawing.Size(147, 36);
             this.btnGoToCart.TabIndex = 12;
-            this.btnGoToCart.Text = "Go to cart";
+            this.btnGoToCart.Text = "Show the cart";
             this.btnGoToCart.UseVisualStyleBackColor = true;
             this.btnGoToCart.Click += new System.EventHandler(this.btnGoToCart_Click);
             // 

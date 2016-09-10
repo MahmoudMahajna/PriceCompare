@@ -9,7 +9,7 @@ namespace PriceCompare.XmlParser
 {
     [Serializable]
     [XmlRoot("root")]
-    public class ItemsCollection
+    public class ShofesalItemsCollection
     {
         [XmlArray("Items")]
         [XmlArrayItem("Item", typeof(Item))]

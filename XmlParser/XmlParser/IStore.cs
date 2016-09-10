@@ -12,8 +12,5 @@
         string StoreName { get; set; }
         string Address { get; set; }
         string City { get; set; }
-        string ZipCode { get; set; }
-        string LastUpdateDate { get; set; }
-        string LastUpdateTime { get; set; }
     }
 }

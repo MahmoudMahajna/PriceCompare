@@ -6,17 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PriceCompare.DAL.Data;
+using PriceCompare.DAL.RepositoriesIntefaces;
 using PriceCompare.Model;
 
 namespace PriceCompare.DAL.Repositories
 {
-    public class ManagerRepository
+    public class ManagerRepository:Repository,IManagerRepository
     {
-        private readonly PriceCompareDbContext _context;
-
-        public ManagerRepository(PriceCompareDbContext context)
+        public ManagerRepository(PriceCompareDbContext context):base(context)
         {
-            _context = context;
         }
 
         public async Task<IEnumerable<Item>> GetItemsWithManufactureNameAsync(string manufactureName)

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using PriceCompare.Logic;
 
-namespace PriceCompareApp
+namespace PriceCompare.App
 {
     public partial class CartContent : Form
     {

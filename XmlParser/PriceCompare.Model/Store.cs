@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
+using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class Store
+    public class Store:IStore
     {
+        [Key]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StoreId { get; set; }
         public string StoreName { get; set; }
+        [Key]
+        [Column(Order = 2)]
         public string ChainId { get; set; }
         public int BikoretNo { get; set; }
         public int StoreType { get; set; }

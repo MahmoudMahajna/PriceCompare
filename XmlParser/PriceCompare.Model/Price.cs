@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
+using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class Price
+    public class Price:IPrice
     {
         [Key]
         [Column(Order = 1)]
@@ -15,7 +12,9 @@ namespace PriceCompare.Model
         [Key]
         [Column(Order = 2)]
         public int StoreId { get; set; }
-
+        [Key]
+        [Column(Order = 3)]
+        public long ChainId { get; set; }
         public string ItemName { get; set; }
         public float ItemPrice { get; set; }
         public double Quantity { get; set; }

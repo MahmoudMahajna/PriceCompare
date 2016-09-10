@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PriceCompare.Model.Interfaces;
 
 namespace PriceCompare.Model
 {
-    public class User
+    public class User:IUser
     {
         [Key]
         public int UserId { get; set; }

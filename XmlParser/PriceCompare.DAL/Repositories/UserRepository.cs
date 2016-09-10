@@ -2,17 +2,15 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
 using PriceCompare.DAL.Data;
+using PriceCompare.DAL.RepositoriesIntefaces;
 using PriceCompare.Model;
 
 namespace PriceCompare.DAL.Repositories
 {
-    public class UserRepository
+    public class UserRepository : Repository, IUserRepository
     {
-        private readonly PriceCompareDbContext _context;
-
-        public UserRepository(PriceCompareDbContext context)
+        public UserRepository(PriceCompareDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public User AddUser(string name, string username, string password)
@@ -21,7 +19,7 @@ namespace PriceCompare.DAL.Repositories
             {
                 throw new ArgumentNullException();
             }
-            var user= _context.Users.Add(new User()
+            var user = _context.Users.Add(new User()
             {
                 Name = name,
                 Username = username,
@@ -34,7 +32,7 @@ namespace PriceCompare.DAL.Repositories
 
         public async Task<User> GetUser(string username)
         {
-            if (username==null)
+            if (username == null)
             {
                 throw new ArgumentNullException(nameof(username));
             }
@@ -43,9 +41,9 @@ namespace PriceCompare.DAL.Repositories
 
         public async Task<bool> CheckUserPassword(string username, string password)
         {
-            if ( username == null || password == null)
+            if (username == null || password == null)
             {
-                throw new ArgumentNullException(username==null?nameof(username):nameof(password));
+                throw new ArgumentNullException(username == null ? nameof(username) : nameof(password));
             }
             var result = await _context.Users.FirstOrDefaultAsync(user => user.Username.Equals(username));
             return result != null && result.Password.Equals(password);

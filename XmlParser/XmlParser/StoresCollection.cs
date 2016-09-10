@@ -9,7 +9,7 @@ using PriceCompare.XmlParser;
 namespace PriceCompare.XmlParser
 {
     [Serializable]
-    [XmlRoot("root")]
+    [XmlRoot("Root")]
    public class StoresCollection
     {
         [XmlArray("Stores")]
@@ -25,7 +25,6 @@ namespace PriceCompare.XmlParser
             foreach (var store in Stores)
             {
                 store.ChainId = ChainId;
-                store.LastUpdateDate = LastUpdateDate;
             }
         }
     }

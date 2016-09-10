@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PriceCompareApp
+namespace PriceCompare.App
 {
     public partial class ItemToCompareControl : UserControl
     {
