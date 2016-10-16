@@ -3,6 +3,8 @@ using System.Xml.Serialization;
 
 namespace XmlParser
 {
+    //Why duplicate the types TivTamItemCollection and ShofesalItemsCollection?
+    //Consider: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
     [Serializable]
     [XmlRoot("root")]
     public class ShofesalItemsCollection

@@ -1,5 +1,6 @@
 ﻿namespace XmlParser
 {
+    //A very good idea- this way no one really knows about the underlying source of the items- could be anything!
     public interface IStore
     {
         long ChainId { get; set; }

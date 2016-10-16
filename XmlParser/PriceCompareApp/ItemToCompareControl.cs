@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 namespace PriceCompareApp
 {
+    //Very good - creating smaller composable parts is key to scalable software
     public partial class ItemToCompareControl : UserControl
     {
         public ItemToCompareControl(string itemName,float itemPrice,int count)

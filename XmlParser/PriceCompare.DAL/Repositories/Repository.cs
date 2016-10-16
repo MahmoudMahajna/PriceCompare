@@ -2,6 +2,7 @@
 
 namespace PriceCompare.DAL.Repositories
 {
+    //Well done!
     public abstract class Repository
     {
         protected readonly PriceCompareDbContext _context;

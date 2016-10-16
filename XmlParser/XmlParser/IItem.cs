@@ -2,6 +2,7 @@
 
 namespace XmlParser
 {
+    //A very good idea- this way no one really knows about the underlying source of the items- could be anything!
     public interface IItem
     {
         long ChainId { get; set; }

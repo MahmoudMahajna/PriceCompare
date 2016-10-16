@@ -8,10 +8,23 @@ using PriceCompareLogic;
 
 namespace PriceCompareApp
 {
+
+    /**
+  * When creating a UI application- consider one of the following paradigms: MVC, MVP or MVVM
+  * It is best to refrain from coding in the codebehind of the UI class.
+  * This enables better testability and separation of UI from User interaction, Business Logic and Data Access.
+  * 
+  * Consider :
+  * a) https://he.wikipedia.org/wiki/Model_View_Controller
+  * b) https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter
+  * c) https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel
+  */
     public partial class PriceCompareStoresForm : Form
     {
+        //Using constants is a very good way to improve readability
         private const int MinMaxItemsInStoreNumber = 3;
         private readonly PriceCompareManager _priceCompareManager;
+        //Programming against an abstraction is also a very good practice!
         private readonly IEnumerable<ItemCart> _items;
         public PriceCompareStoresForm(PriceCompareManager priceCompareManager, IEnumerable<ItemCart> items)
         {

@@ -4,6 +4,8 @@ namespace XmlParser
 {
     public interface IFileXmlParser
     {
-       object Parse(StreamReader xmlFile);
+        //Why not 'T Parse<T>(StreamReader xmlFile);'?
+
+        object Parse(StreamReader xmlFile);
     }
 }
